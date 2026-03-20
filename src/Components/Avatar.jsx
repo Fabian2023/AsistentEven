@@ -6,8 +6,26 @@ const Avatar = () => {
   const location = useLocation();
   const name = location.state?.name;
 
+  // 🔹 VIDEO SALUDO
   const [videoUrl, setVideoUrl] = useState("");
+
+  // 🔹 VIDEO EVENTOUCH (nuevo)
+  const [eventouchVideoUrl, setEventouchVideoUrl] = useState("");
+
   const [loading, setLoading] = useState(true);
+
+  // 🔥 traer video Eventouch
+  const handleEventouchVideo = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/eventouch-video"
+      );
+
+      setEventouchVideoUrl(response.data.videoUrl);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     const generateVideo = async () => {
@@ -29,17 +47,19 @@ const Avatar = () => {
   }, [name]);
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-start text-white px-4 py-6">
+    <div className="w-full min-h-screen relative flex flex-col items-center justify-start text-white px-4 py-6">
 
-      {/* VIDEO */}
+      {/* LOADER SOLO PARA SALUDO */}
       {loading && (
         <h2 className="text-xl md:text-3xl animate-pulse mb-6 text-center">
           Preparando tu saludo...
         </h2>
       )}
 
-      {videoUrl && (
+      {/* 🔹 VIDEO SALUDO */}
+      {!eventouchVideoUrl && videoUrl && (
         <video
+          key={videoUrl}
           src={videoUrl}
           autoPlay
           className="
@@ -48,26 +68,37 @@ const Avatar = () => {
           md:max-w-lg
           lg:max-w-xl
           rounded-xl
-          shadow-lg
+          
           mb-10
           "
         />
       )}
 
-      {/* PREGUNTAS */}
-      <div
-        className="
-        flex
-        flex-col
-        gap-4
-        w-full
-        max-w-md
-        md:max-w-2xl
-        lg:max-w-3xl
-        "
-      >
+      {/* 🔥 VIDEO EVENTOUCH (MISMO ESTILO) */}
+      {eventouchVideoUrl && (
+        <video
+          key={eventouchVideoUrl}
+          src={eventouchVideoUrl}
+          autoPlay
+          className="
+          w-full
+          max-w-sm
+          md:max-w-lg
+          lg:max-w-4xl
+          rounded-xl
+          -mt-87.5
+          
+          "
+        />
+      )}
 
-        <div className="bg-[#753E89] hover:bg-purple-700 transition p-6 md:p-8 rounded-xl cursor-pointer text-center text-lg md:text-3xl lg:text-4xl font-semibold">
+      {/* PREGUNTAS */}
+      <div className="flex flex-col gap-4 w-full max-w-md md:max-w-2xl lg:max-w-3xl">
+
+        <div
+          onClick={handleEventouchVideo}
+          className="bg-[#753E89] hover:bg-purple-700 transition p-6 md:p-8 rounded-xl cursor-pointer text-center text-lg md:text-3xl lg:text-4xl font-semibold "
+        >
           ¿Qué es Eventouch?
         </div>
 
