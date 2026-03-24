@@ -93,7 +93,7 @@ const Avatar = () => {
       )}
 
       {/* PREGUNTAS */}
-      <div className="flex flex-col gap-4 w-full max-w-md md:max-w-2xl lg:max-w-3xl">
+      <div className=" absolute flex flex-col gap-4 w-full max-w-md md:max-w-2xl lg:max-w-3xl mt-237.5">
 
         <div
           onClick={handleEventouchVideo}
