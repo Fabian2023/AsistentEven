@@ -99,7 +99,7 @@ const Avatar = () => {
           max-w-sm
           md:max-w-lg
           lg:max-w-4xl
-          -mt-87.5
+          -mt-90
           scale-110
           
           "
@@ -141,6 +141,7 @@ const Avatar = () => {
           md:max-w-lg
           lg:max-w-4xl
           -mt-90
+          scale-110
           
           
           "
@@ -148,23 +149,23 @@ const Avatar = () => {
       )}
  
       {/* PREGUNTAS */}
-      <div className=" absolute flex flex-col gap-4 w-full max-w-md md:max-w-2xl lg:max-w-3xl mt-237.5">
+      <div className=" absolute flex flex-col gap-6 w-full max-w-md md:max-w-2xl lg:max-w-3xl mt-250">
         <div
           onClick={handleEventouchVideo}
-          className=" z-10 bg-[#753E89] hover:bg-purple-700 transition p-6 md:p-8 rounded-xl cursor-pointer text-center text-lg md:text-3xl lg:text-4xl font-semibold "
+          className=" z-10 bg-[#2d063b] hover:bg-purple-700 transition p-6 md:p-8 rounded-full cursor-pointer text-center text-lg md:text-3xl lg:text-4xl font-semibold "
         >
           ¿Qué es Eventouch?
         </div>
 
-        <div className=" z-10 bg-[#753E89] hover:bg-purple-700 transition p-6 md:p-8 rounded-xl cursor-pointer text-center text-lg md:text-3xl lg:text-4xl font-semibold">
+        <div className=" z-10 bg-[#2d063b] hover:bg-purple-700 transition p-6 md:p-8 rounded-full cursor-pointer text-center text-lg md:text-3xl lg:text-4xl font-semibold">
           ¿Qué experiencias ofrecen?
         </div>
 
-        <div className=" z-10 bg-[#753E89] hover:bg-purple-700 transition p-6 md:p-8 rounded-xl cursor-pointer text-center text-lg md:text-3xl lg:text-4xl font-semibold">
+        <div className=" z-10 bg-[#2d063b] hover:bg-purple-700 transition p-6 md:p-8 rounded-full cursor-pointer text-center text-lg md:text-3xl lg:text-4xl font-semibold">
           ¿Cómo funcionan los tótems?
         </div>
 
-        <div className=" z-10 bg-[#753E89] hover:bg-purple-700 transition p-6 md:p-8 rounded-xl cursor-pointer text-center text-lg md:text-3xl lg:text-4xl font-semibold">
+        <div className=" z-10 bg-[#2d063b] hover:bg-purple-700 transition p-6 md:p-8 rounded-full cursor-pointer text-center text-lg md:text-3xl lg:text-4xl font-semibold">
           ¿Puedo participar en una trivia?
         </div>
       </div>
