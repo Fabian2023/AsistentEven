@@ -51,7 +51,8 @@ const Avatar = () => {
   }, [name]);
 
   return (
-    <div className="w-full min-h-screen relative flex flex-col items-center justify-start text-white px-4 py-6">
+    <div className="w-full min-h-screen  relative flex flex-col items-center justify-start text-white px-4 py-40 ">
+      
       {/* 🔥 IMAGEN FONDO (NUEVO) */}
       <img
         src="/bg.png"
@@ -63,10 +64,28 @@ const Avatar = () => {
           max-w-sm
           md:max-w-lg
           lg:max-w-4xl 
+          scale-110
           
           
         "
       />
+      {/* 🔥 MARCO OVERLAY */}
+<img
+  src="/marco.png" // tu imagen generada
+  alt="marco"
+  className="
+    pointer-events-none
+    absolute
+    z-20
+    w-full
+    max-w-sm
+     md:max-w-2xl
+    lg:max-w-2xl
+    -mt-20
+    rounded-2xl
+    
+  "
+/>
 
       {/* 🔥 VIDEO INTRO (NUEVO) */}
       {showIntro && (
@@ -81,7 +100,8 @@ const Avatar = () => {
           md:max-w-lg
           lg:max-w-4xl
           -mt-87.5
-          scale-95
+          scale-110
+          
           "
         />
       )}
@@ -100,6 +120,7 @@ const Avatar = () => {
           lg:max-w-xl
           rounded-xl
           mt-2
+          scale-110
           
           
           "
@@ -108,6 +129,7 @@ const Avatar = () => {
 
       {/* 🔥 VIDEO EVENTOUCH (MISMO ESTILO) */}
       {!showIntro && eventouchVideoUrl && (
+        
         <video
           key={eventouchKey}
           src={eventouchVideoUrl}
@@ -119,12 +141,12 @@ const Avatar = () => {
           md:max-w-lg
           lg:max-w-4xl
           -mt-90
-          scale-95
+          
           
           "
         />
       )}
-
+ 
       {/* PREGUNTAS */}
       <div className=" absolute flex flex-col gap-4 w-full max-w-md md:max-w-2xl lg:max-w-3xl mt-237.5">
         <div
