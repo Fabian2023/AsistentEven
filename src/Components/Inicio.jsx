@@ -19,7 +19,7 @@ const Inicio = () => {
   return (
     <div className="w-full h-screen flex flex-col items-center justify-center bg-[#2C1733] text-white">
 
-      <h1 className="text-5xl font-bold mb-10">
+      <h1 className="text-8xl font-bold mb-10">
         Bienvenidos
       </h1>
 
@@ -28,12 +28,12 @@ const Inicio = () => {
         placeholder="Escribe tu nombre"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        className="w-80 p-4 text-black bg-white text-xl rounded-xl outline-none mb-6"
+        className="w-120 h-30 p-4 text-black bg-white text-5xl rounded-xl outline-none mb-6  "
       />
 
       <button
         onClick={handleContinue}
-        className="bg-[#753E89] hover:bg-[#8e4ba7] px-10 py-4 text-xl rounded-xl transition"
+        className=" w-96 h-20  mt-8   bg-[#753E89] hover:bg-[#8e4ba7] px-10 py-4 text-4xl rounded-full transition"
       >
         Continuar
       </button>

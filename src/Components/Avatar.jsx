@@ -17,7 +17,7 @@ const Avatar = () => {
   // 🔥 NUEVO: control intro
   const [showIntro, setShowIntro] = useState(true);
   const introVideo =
-    "https://videointroevent.s3.us-east-1.amazonaws.com/videointro2.mp4";
+    "https://avartarsaludo2.s3.us-east-1.amazonaws.com/Copy+of+Copy+of+videoIntro1.mp4";
 
   // 🔥 traer video Eventouch
   const handleEventouchVideo = async () => {
@@ -27,7 +27,7 @@ const Avatar = () => {
       );
 
       setEventouchVideoUrl(response.data.videoUrl);
-      setEventouchKey(prev => prev + 1);
+      setEventouchKey((prev) => prev + 1);
     } catch (error) {
       console.error(error);
     }
@@ -52,14 +52,26 @@ const Avatar = () => {
 
   return (
     <div className="w-full min-h-screen  relative flex flex-col items-center justify-start text-white px-4 py-40 ">
-      
-      {/* 🔥 IMAGEN FONDO (NUEVO) */}
+      {/* 🔥 FONDO BASE NUEVO */}
+      <img
+        src="/fondo-minimalista.png" // el que generamos
+        alt="fondo"
+        className="
+          absolute
+          inset-0
+          w-full
+          h-full
+          object-cover
+          z-0
+        "
+      />
+      {/* 🔥 avatar de fondo */}
       <img
         src="/bg.png"
         alt="avatar"
         className="
           absolute 
-          w-146
+          w-140
           h-218
           max-w-sm
           md:max-w-lg
@@ -70,22 +82,22 @@ const Avatar = () => {
         "
       />
       {/* 🔥 MARCO OVERLAY */}
-<img
-  src="/marco.png" // tu imagen generada
-  alt="marco"
-  className="
-    pointer-events-none
-    absolute
-    z-20
-    w-full
-    max-w-sm
-     md:max-w-2xl
-    lg:max-w-2xl
-    -mt-20
-    rounded-2xl
+      <img
+        src="/marco.png" // tu imagen generada
+        alt="marco"
+        className="
+        pointer-events-none
+        absolute
+        z-20
+        w-full
+        max-w-sm
+        md:max-w-2xl
+        lg:max-w-2xl
+        -mt-20
+        rounded-2xl
     
-  "
-/>
+      "
+      />
 
       {/* 🔥 VIDEO INTRO (NUEVO) */}
       {showIntro && (
@@ -98,9 +110,10 @@ const Avatar = () => {
           w-full
           max-w-sm
           md:max-w-lg
-          lg:max-w-4xl
-          -mt-90
-          scale-110
+          lg:max-w-2xl
+          -mt-45
+          scale-91
+          
           
           "
         />
@@ -129,7 +142,6 @@ const Avatar = () => {
 
       {/* 🔥 VIDEO EVENTOUCH (MISMO ESTILO) */}
       {!showIntro && eventouchVideoUrl && (
-        
         <video
           key={eventouchKey}
           src={eventouchVideoUrl}
@@ -139,15 +151,17 @@ const Avatar = () => {
           w-full
           max-w-sm
           md:max-w-lg
-          lg:max-w-4xl
-          -mt-90
-          scale-110
+          lg:max-w-2xl
+          -mt-45
+          scale-91
+          
+          
           
           
           "
         />
       )}
- 
+
       {/* PREGUNTAS */}
       <div className=" absolute flex flex-col gap-6 w-full max-w-md md:max-w-2xl lg:max-w-3xl mt-250">
         <div
