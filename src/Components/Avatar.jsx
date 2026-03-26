@@ -19,6 +19,7 @@ const Avatar = () => {
   const introVideo =
     "https://avartarsaludo2.s3.us-east-1.amazonaws.com/Copy+of+Copy+of+videoIntro1.mp4";
 
+
   // 🔥 traer video Eventouch
   const handleEventouchVideo = async () => {
     try {
@@ -50,6 +51,8 @@ const Avatar = () => {
     if (name) generateVideo();
   }, [name]);
 
+  
+
   return (
     <div className="w-full min-h-screen  relative flex flex-col items-center justify-start text-white px-4 py-40 ">
       {/* 🔥 FONDO BASE NUEVO */}
@@ -71,8 +74,8 @@ const Avatar = () => {
         alt="avatar"
         className="
           absolute 
-          w-140
-          h-218
+          w-138
+          h-210
           max-w-sm
           md:max-w-lg
           lg:max-w-4xl 
@@ -93,8 +96,10 @@ const Avatar = () => {
         max-w-sm
         md:max-w-2xl
         lg:max-w-2xl
-        -mt-20
-        rounded-2xl
+        -mt-15
+        rounded-4xl
+        
+        
     
       "
       />
@@ -153,11 +158,7 @@ const Avatar = () => {
           md:max-w-lg
           lg:max-w-2xl
           -mt-45
-          scale-91
-          
-          
-          
-          
+          scale-91 
           "
         />
       )}
