@@ -93,11 +93,14 @@ const Avatar = () => {
         absolute
         z-20
         w-full
+        h-272.5
         max-w-sm
         md:max-w-2xl
         lg:max-w-2xl
-        -mt-15
+        -mt-33
         rounded-4xl
+          
+  
         
         
     
@@ -164,26 +167,93 @@ const Avatar = () => {
       )}
 
       {/* PREGUNTAS */}
-      <div className=" absolute flex flex-col gap-6 w-full max-w-md md:max-w-2xl lg:max-w-3xl mt-250">
-        <div
-          onClick={handleEventouchVideo}
-          className=" z-10 bg-[#2d063b] hover:bg-purple-700 transition p-6 md:p-8 rounded-full cursor-pointer text-center text-lg md:text-3xl lg:text-4xl font-semibold "
-        >
-          ¿Qué es Eventouch?
-        </div>
+      {/* PREGUNTAS */}
+<div className="absolute flex flex-col items-center gap-6 w-full max-w-md md:max-w-2xl lg:max-w-3xl mt-250">
 
-        <div className=" z-10 bg-[#2d063b] hover:bg-purple-700 transition p-6 md:p-8 rounded-full cursor-pointer text-center text-lg md:text-3xl lg:text-4xl font-semibold">
-          ¿Qué experiencias ofrecen?
-        </div>
+  {/* BOTÓN */}
+  <div
+    onClick={handleEventouchVideo}
+    className="
+      group
+      z-10
+      w-full
+      text-center
+      px-6 py-5 md:px-10 md:py-7
+      rounded-full
+      cursor-pointer
+      text-lg md:text-3xl lg:text-4xl
+      font-semibold
 
-        <div className=" z-10 bg-[#2d063b] hover:bg-purple-700 transition p-6 md:p-8 rounded-full cursor-pointer text-center text-lg md:text-3xl lg:text-4xl font-semibold">
-          ¿Cómo funcionan los tótems?
-        </div>
+      bg-gradient-to-r from-[#2C1733] via-[#753E89] to-[#2C1733]
+      shadow-lg shadow-purple-900/40
 
-        <div className=" z-10 bg-[#2d063b] hover:bg-purple-700 transition p-6 md:p-8 rounded-full cursor-pointer text-center text-lg md:text-3xl lg:text-4xl font-semibold">
-          ¿Puedo participar en una trivia?
-        </div>
-      </div>
+      transition-all duration-300 ease-out
+
+      hover:scale-105
+      hover:shadow-[0_0_25px_rgba(168,85,247,0.6)]
+
+      active:scale-95
+    "
+  >
+    <span className="relative z-10">
+      ¿Qué es Eventouch?
+    </span>
+
+    {/* glow overlay */}
+    <div className="
+      absolute inset-0
+      rounded-full
+      opacity-0 group-hover:opacity-100
+      transition duration-300
+      bg-purple-500/20 blur-xl
+    " />
+  </div>
+
+  {/* BOTONES REUTILIZABLES */}
+  {[
+    "¿Qué experiencias ofrecen?",
+    "¿Cómo funcionan los tótems?",
+    "¿Puedo participar en una trivia?"
+  ].map((text, i) => (
+    <div
+      key={i}
+      className="
+        group
+        z-10
+        w-full
+        text-center
+        px-6 py-5 md:px-10 md:py-7
+        rounded-full
+        cursor-pointer
+        text-lg md:text-3xl lg:text-4xl
+        font-semibold
+
+        bg-gradient-to-r from-[#2C1733] via-[#753E89] to-[#2C1733]
+        shadow-lg shadow-purple-900/40
+
+        transition-all duration-300 ease-out
+
+        hover:scale-105
+        hover:shadow-[0_0_25px_rgba(168,85,247,0.6)]
+
+        active:scale-95
+      "
+    >
+      <span className="relative z-10">{text}</span>
+
+      <div className="
+        absolute inset-0
+        rounded-full
+        opacity-0 group-hover:opacity-100
+        transition duration-300
+        bg-purple-500/20 blur-xl
+      " />
+    </div>
+  ))}
+
+  
+
+</div>
     </div>
   );
 };
