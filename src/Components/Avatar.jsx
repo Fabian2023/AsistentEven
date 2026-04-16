@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 
 const Avatar = () => {
@@ -19,12 +20,11 @@ const Avatar = () => {
   const introVideo =
     "https://avartarsaludo2.s3.us-east-1.amazonaws.com/Copy+of+Copy+of+videoIntro1.mp4";
 
-
   // 🔥 traer video Eventouch
   const handleEventouchVideo = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/eventouch-video",
+        "https://avatarbackend-es7u.onrender.com/api/eventouch-video",
       );
 
       setEventouchVideoUrl(response.data.videoUrl);
@@ -38,7 +38,7 @@ const Avatar = () => {
     const generateVideo = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:5000/api/generate-greeting",
+          "https://avatarbackend-es7u.onrender.com/api/generate-greeting",
           { name },
         );
 
@@ -50,8 +50,6 @@ const Avatar = () => {
 
     if (name) generateVideo();
   }, [name]);
-
-  
 
   return (
     <div className="w-full min-h-screen  relative flex flex-col items-center justify-start text-white px-4 py-40 ">
@@ -78,7 +76,8 @@ const Avatar = () => {
           h-210
           max-w-sm
           md:max-w-lg
-          lg:max-w-4xl 
+          lg:max-w-4xl
+        
           scale-110
           
           
@@ -94,7 +93,7 @@ const Avatar = () => {
         z-20
         w-full
         h-272.5
-        max-w-sm
+        max-w-sm    
         md:max-w-2xl
         lg:max-w-2xl
         -mt-33
@@ -106,154 +105,71 @@ const Avatar = () => {
     
       "
       />
+      {/* 🎬 SISTEMA DE VIDEOS ANIMADO */}
+      <AnimatePresence mode="wait">
+        {/* INTRO */}
+        {showIntro && (
+          <motion.video
+            key="intro"
+            src={introVideo}
+            autoPlay
+            onEnded={() => setShowIntro(false)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7, ease: "easeInOut" }}
+            className="relative z-10 w-full max-w-sm md:max-w-lg lg:max-w-2xl -mt-45 scale-91"
+          />
+        )}
 
-      {/* 🔥 VIDEO INTRO (NUEVO) */}
-      {showIntro && (
-        <video
-          src={introVideo}
-          autoPlay
-          onEnded={() => setShowIntro(false)}
-          className="
-          relative z-10
-          w-full
-          max-w-sm
-          md:max-w-lg
-          lg:max-w-2xl
-          -mt-45
-          scale-91
-          
-          
-          "
-        />
-      )}
+        {/* SALUDO */}
+        {!showIntro && !eventouchVideoUrl && videoUrl && (
+          <motion.video
+            key="saludo"
+            src={videoUrl}
+            autoPlay
+           initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+            className="relative z-10 w-full max-w-sm md:max-w-lg lg:max-w-xl rounded-xl mt-2 scale-106"
+          />
+        )}
 
-      {/* 🔹 VIDEO SALUDO */}
-      {!showIntro && !eventouchVideoUrl && videoUrl && (
-        <video
-          key={videoUrl}
-          src={videoUrl}
-          autoPlay
-          className="
-          relative z-10
-          w-full
-          max-w-sm
-          md:max-w-lg
-          lg:max-w-xl
-          rounded-xl
-          mt-2
-          scale-110
-          
-          
-          "
-        />
-      )}
-
-      {/* 🔥 VIDEO EVENTOUCH (MISMO ESTILO) */}
-      {!showIntro && eventouchVideoUrl && (
-        <video
-          key={eventouchKey}
-          src={eventouchVideoUrl}
-          autoPlay
-          className="
-          relative z-10
-          w-full
-          max-w-sm
-          md:max-w-lg
-          lg:max-w-2xl
-          -mt-45
-          scale-91 
-          "
-        />
-      )}
+        {/* EVENTOUCH */}
+        {!showIntro && eventouchVideoUrl && (
+          <motion.video
+            key={eventouchKey}
+            src={eventouchVideoUrl}
+            autoPlay
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7, ease: "easeInOut" }}
+            className="relative z-10 w-full max-w-sm md:max-w-lg lg:max-w-2xl -mt-42 scale-91"
+          />
+        )}
+      </AnimatePresence>
 
       {/* PREGUNTAS */}
-      {/* PREGUNTAS */}
-<div className="absolute flex flex-col items-center gap-6 w-full max-w-md md:max-w-2xl lg:max-w-3xl mt-250">
-
-  {/* BOTÓN */}
-  <div
-    onClick={handleEventouchVideo}
-    className="
-      group
-      z-10
-      w-full
-      text-center
-      px-6 py-5 md:px-10 md:py-7
-      rounded-full
-      cursor-pointer
-      text-lg md:text-3xl lg:text-4xl
-      font-semibold
-
-      bg-gradient-to-r from-[#2C1733] via-[#753E89] to-[#2C1733]
-      shadow-lg shadow-purple-900/40
-
-      transition-all duration-300 ease-out
-
-      hover:scale-105
-      hover:shadow-[0_0_25px_rgba(168,85,247,0.6)]
-
-      active:scale-95
-    "
-  >
-    <span className="relative z-10">
-      ¿Qué es Eventouch?
-    </span>
-
-    {/* glow overlay */}
-    <div className="
-      absolute inset-0
-      rounded-full
-      opacity-0 group-hover:opacity-100
-      transition duration-300
-      bg-purple-500/20 blur-xl
-    " />
-  </div>
-
-  {/* BOTONES REUTILIZABLES */}
-  {[
-    "¿Qué experiencias ofrecen?",
-    "¿Cómo funcionan los tótems?",
-    "¿Puedo participar en una trivia?"
-  ].map((text, i) => (
-    <div
-      key={i}
-      className="
-        group
-        z-10
-        w-full
-        text-center
-        px-6 py-5 md:px-10 md:py-7
-        rounded-full
-        cursor-pointer
-        text-lg md:text-3xl lg:text-4xl
-        font-semibold
-
-        bg-gradient-to-r from-[#2C1733] via-[#753E89] to-[#2C1733]
-        shadow-lg shadow-purple-900/40
-
-        transition-all duration-300 ease-out
-
-        hover:scale-105
-        hover:shadow-[0_0_25px_rgba(168,85,247,0.6)]
-
-        active:scale-95
-      "
-    >
-      <span className="relative z-10">{text}</span>
-
-      <div className="
-        absolute inset-0
-        rounded-full
-        opacity-0 group-hover:opacity-100
-        transition duration-300
-        bg-purple-500/20 blur-xl
-      " />
-    </div>
-  ))}
-
-  
-
-</div>
+      <div className=" absolute flex flex-col gap-6 w-full max-w-md md:max-w-2xl lg:max-w-3xl mt-250">
+        <div
+          onClick={handleEventouchVideo}
+          className=" z-10 bg-[#2d063b] hover:bg-purple-700 transition p-6 md:p-8 rounded-full cursor-pointer text-center text-lg md:text-3xl lg:text-4xl font-semibold "
+        >
+          ¿Qué es Eventouch?
+        </div>
+        <div className=" z-10 bg-[#2d063b] hover:bg-purple-700 transition p-6 md:p-8 rounded-full cursor-pointer text-center text-lg md:text-3xl lg:text-4xl font-semibold">
+          {" "}
+          ¿Qué experiencias ofrecen?
+        </div>
+        <div className=" z-10 bg-[#2d063b] hover:bg-purple-700 transition p-6 md:p-8 rounded-full cursor-pointer text-center text-lg md:text-3xl lg:text-4xl font-semibold">
+          ¿Cómo funcionan los tótems?
+        </div>
+        <div className=" z-10 bg-[#2d063b] hover:bg-purple-700 transition p-6 md:p-8 rounded-full cursor-pointer text-center text-lg md:text-3xl lg:text-4xl font-semibold">
+          ¿Puedo participar en una trivia?
+        </div>
+      </div>
     </div>
   );
 };
